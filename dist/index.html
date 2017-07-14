@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!--author:Vace_Vlm(ocdo@qq.com),create:2017年7月14日 下午1:27-->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-title" content="vace"/>
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>自定义拼图</title>
+  <style>
+    *{
+      padding: 0;margin: 0;
+    }
+    #control{
+      margin: 20px 0;
+    }
+    #control input{
+      width: 30px;
+      padding: 5px 10px;
+      border:  1px solid #ccc;
+      border-radius: 5px;
+      text-align: center;
+    }
+    #control button {
+      border:  1px solid #ccc;
+      padding: 5px 10px;
+    }
+  </style>  
+</head>
+<body>
+  <div id="control">
+    <input id="row" type="number" value="3" placeholder="row"> x
+    <input id="col" type="number" value="3" placeholder="col">
+    <button id="setting">设置</button>
+    <button id="shuffle">重置</button>
+  </div>
+
+  <div id="app"></div>
+
+  <script src="hilo-standalone.min.js"></script>
+  <script src="game.js"></script>
+  <script>
+    /* global JiasawApp */
+    var game = new JiasawApp()
+    game.run()
+    id('setting').addEventListener('click', function () {
+      var row = +id('row').value
+      var col = +id('col').value
+      game.rerender({
+        divideX: col,
+        divideY: row
+      })
+    })
+    id('shuffle').addEventListener('click', function() {
+      game.shuffle()
+    })
+
+    function id (id) {
+      return document.getElementById(id)
+    }
+  </script>
+</body>
+</html>
